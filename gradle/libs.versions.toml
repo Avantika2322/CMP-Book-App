@@ -14,14 +14,13 @@ junit = "4.13.2"
 kotlin = "2.2.21"
 
 koinCoreVersion = "4.1.1"
-kotlinxCoroutinesCore = "1.10.2"
+kotlinxCoroutines = "1.10.2"
 navigationCompose = "2.9.1"
 serialization-json = "1.9.0"
 serialization = "2.2.21"
 
 ktor-client = "3.3.2"
 coilCompose = "3.3.0"
-coilNetworkKtor = "3.0.0"
 ksp = "2.3.2"
 
 sqlite = "2.6.2"
@@ -44,8 +43,8 @@ androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koinCoreVersion" }
 
-kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
-
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutines" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
 
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization-json" }
 
