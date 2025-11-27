@@ -35,14 +35,22 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+
+            // ktor
             implementation(libs.ktor.client.okhttp)
+
+            // coroutines
             implementation(libs.kotlinx.coroutines.android)
+
+            //koin
+            implementation(libs.koin.android)
         }
 
         commonMain.dependencies {
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)
+            implementation(compose.materialIconsExtended)
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
@@ -55,15 +63,24 @@ kotlin {
             implementation(libs.androidx.room.runtime)
             implementation(libs.androidx.sqlite.bundled)
 
+            //koin
             implementation(libs.koin.core)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.composeViewModel)
+
+            // coroutines
             implementation(libs.kotlinx.coroutines.core)
 
+            // serialization
             implementation(libs.kotlinx.serialization.json)
 
+            // ktor
             implementation(libs.ktor.client.core)
 
+            // navigation component
             implementation(libs.navigation.compose)
 
+            //coil
             implementation(libs.coil.compose)
         }
 
@@ -72,6 +89,7 @@ kotlin {
         }
 
         iosMain.dependencies {
+            // ktor
             implementation(libs.ktor.client.darwin)
         }
 
