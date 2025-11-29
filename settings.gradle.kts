@@ -29,3 +29,5 @@ dependencyResolutionManagement {
 }
 
 include(":composeApp")
+include(":iosApp")
+project(":iosApp").projectDir = file("iosApp")
