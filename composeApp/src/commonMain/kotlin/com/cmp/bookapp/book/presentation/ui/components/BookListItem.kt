@@ -34,7 +34,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import bookapp.composeapp.generated.resources.Res
-import bookapp.composeapp.generated.resources.outline_book_5_24
+import bookapp.composeapp.generated.resources.book_svgrepo_com
 import coil3.compose.rememberAsyncImagePainter
 import com.cmp.bookapp.book.domain.model.Book
 import com.cmp.bookapp.core.presentation.Colors.LightBlue
@@ -55,9 +55,11 @@ fun BookListItem(
     ) {
         Row(
             modifier = Modifier
-                .padding(12.dp)
+                .padding(horizontal = 12.dp)
                 .fillMaxWidth()
-                .height(IntrinsicSize.Min)
+                .height(IntrinsicSize.Min),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             Box(
                 modifier = Modifier
@@ -88,7 +90,7 @@ fun BookListItem(
                     else -> {
                         Image(
                             painter = if (result.isSuccess) painter else {
-                                painterResource(Res.drawable.outline_book_5_24)
+                                painterResource(Res.drawable.book_svgrepo_com)
                             },
                             contentDescription = book.title,
                             contentScale = if (result.isSuccess) ContentScale.Crop else ContentScale.Fit,

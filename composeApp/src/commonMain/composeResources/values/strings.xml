@@ -2,4 +2,7 @@
 <resources>
     <string name="search_placeholder">Search...</string>
     <string name="close_hint">Clear</string>
+    <string name="search_result">Search Result</string>
+    <string name="favorites">Favorites</string>
+    <string name="no_result">No result found.</string>
 </resources>
