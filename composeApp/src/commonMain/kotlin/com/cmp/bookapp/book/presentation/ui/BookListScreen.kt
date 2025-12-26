@@ -33,14 +33,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.max
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import bookapp.composeapp.generated.resources.Res
-import bookapp.composeapp.generated.resources.close_hint
 import bookapp.composeapp.generated.resources.favorites
 import bookapp.composeapp.generated.resources.no_result
 import bookapp.composeapp.generated.resources.search_result
@@ -84,8 +81,16 @@ private fun BookListScreen(state: BookListState, onAction: (BookListAction) -> U
     val searchResultListState = rememberLazyListState()
     val favoriteListState = rememberLazyListState()
 
-    LaunchedEffect(state.searchResults){
+    LaunchedEffect(state.searchResults) {
         searchResultListState.animateScrollToItem(0)
+    }
+
+    LaunchedEffect(state.selectedTabIndex) {
+        pagerState.animateScrollToPage(0)
+    }
+
+    LaunchedEffect(pagerState.currentPage) {
+        onAction(BookListAction.OnTabSelected(pagerState.currentPage))
     }
 
     Column(
@@ -210,14 +215,14 @@ private fun BookListScreen(state: BookListState, onAction: (BookListAction) -> U
                             }
 
                             1 -> {
-                                if (state.favoriteBooks.isEmpty()){
+                                if (state.favoriteBooks.isEmpty()) {
                                     Text(
                                         text = stringResource(Res.string.no_result),
                                         textAlign = TextAlign.Center,
                                         style = MaterialTheme.typography.headlineSmall,
                                         color = MaterialTheme.colorScheme.error
                                     )
-                                }else{
+                                } else {
                                     BookList(
                                         bookList = state.favoriteBooks,
                                         onBookClick = {

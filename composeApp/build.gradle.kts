@@ -75,13 +75,13 @@ kotlin {
             implementation(libs.kotlinx.serialization.json)
 
             // ktor
-            implementation(libs.ktor.client.core)
+            implementation(libs.bundles.ktor)
 
             // navigation component
             implementation(libs.navigation.compose)
 
             //coil
-            implementation(libs.coil.compose)
+            implementation(libs.bundles.coil)
         }
 
         commonTest.dependencies {

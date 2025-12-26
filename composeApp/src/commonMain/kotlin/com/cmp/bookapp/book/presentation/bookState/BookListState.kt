@@ -7,7 +7,7 @@ data class BookListState(
     val searchQuery: String = "",
     val searchResults: List<Book> = books,
     val favoriteBooks: List<Book> = books,
-    val isLoading: Boolean = false,
+    val isLoading: Boolean = true,
     val selectedTabIndex: Int = 0,
     val errorMsg: UiText? = null
 )
