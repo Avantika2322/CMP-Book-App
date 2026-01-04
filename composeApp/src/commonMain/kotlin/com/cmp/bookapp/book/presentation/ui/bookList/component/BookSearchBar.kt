@@ -1,9 +1,7 @@
-package com.cmp.bookapp.book.presentation.ui.components
+package com.cmp.bookapp.book.presentation.ui.bookList.component
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -14,10 +12,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.rememberSearchBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import bookapp.composeapp.generated.resources.Res
 import bookapp.composeapp.generated.resources.search_placeholder
 import com.cmp.bookapp.core.presentation.Colors.DarkBlue

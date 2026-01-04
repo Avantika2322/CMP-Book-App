@@ -1,9 +1,11 @@
-package com.cmp.bookapp.book.presentation.bookState
+package com.cmp.bookapp.book.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cmp.bookapp.book.domain.model.Book
 import com.cmp.bookapp.book.domain.repository.BookRepository
+import com.cmp.bookapp.book.presentation.bookState.bookList.BookListAction
+import com.cmp.bookapp.book.presentation.bookState.bookList.BookListState
 import com.cmp.bookapp.core.domain.onError
 import com.cmp.bookapp.core.domain.onSuccess
 import com.cmp.bookapp.core.presentation.toUiText
@@ -11,7 +13,6 @@ import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.launchIn
@@ -36,7 +37,7 @@ class BookListViewModel(
         }
         .stateIn(
             viewModelScope,
-            SharingStarted.WhileSubscribed(5000L),
+            SharingStarted.Companion.WhileSubscribed(5000L),
             _state.value
         )
     private val cachedBookList: List<Book> = emptyList()
@@ -75,6 +76,7 @@ class BookListViewModel(
                     query.isBlank() -> {
                         _state.update {
                             it.copy(
+                                isLoading = false,
                                 errorMsg = null,
                                 searchResults = cachedBookList
                             )

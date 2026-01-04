@@ -1,4 +1,4 @@
-package com.cmp.bookapp.book.presentation.ui
+package com.cmp.bookapp.book.presentation.ui.bookList
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -42,11 +42,11 @@ import bookapp.composeapp.generated.resources.favorites
 import bookapp.composeapp.generated.resources.no_result
 import bookapp.composeapp.generated.resources.search_result
 import com.cmp.bookapp.book.domain.model.Book
-import com.cmp.bookapp.book.presentation.bookState.BookListAction
-import com.cmp.bookapp.book.presentation.bookState.BookListState
-import com.cmp.bookapp.book.presentation.bookState.BookListViewModel
-import com.cmp.bookapp.book.presentation.ui.components.BookListItem
-import com.cmp.bookapp.book.presentation.ui.components.BookSearchBar
+import com.cmp.bookapp.book.presentation.bookState.bookList.BookListAction
+import com.cmp.bookapp.book.presentation.bookState.bookList.BookListState
+import com.cmp.bookapp.book.presentation.viewmodel.BookListViewModel
+import com.cmp.bookapp.book.presentation.ui.bookList.component.BookListItem
+import com.cmp.bookapp.book.presentation.ui.bookList.component.BookSearchBar
 import com.cmp.bookapp.core.presentation.Colors.DarkBlue
 import com.cmp.bookapp.core.presentation.Colors.DesertWhite
 import com.cmp.bookapp.core.presentation.Colors.SandYellow

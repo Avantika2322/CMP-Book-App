@@ -1,4 +1,4 @@
-package com.cmp.bookapp.book.presentation.bookState
+package com.cmp.bookapp.book.presentation.bookState.bookList
 
 import com.cmp.bookapp.book.domain.model.Book
 

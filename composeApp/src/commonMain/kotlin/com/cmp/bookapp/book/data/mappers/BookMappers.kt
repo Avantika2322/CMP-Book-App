@@ -5,7 +5,7 @@ import com.cmp.bookapp.book.domain.model.Book
 
 fun SearchedBooksDto.toBook(): Book {
     return Book(
-        id = id,
+        id = id.substringAfterLast("/"),
         title = title,
         languages = languages ?: emptyList(),
         imageUrl = if(coverKey != null) {
