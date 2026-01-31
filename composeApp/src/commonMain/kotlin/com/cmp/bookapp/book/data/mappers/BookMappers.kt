@@ -1,5 +1,6 @@
 package com.cmp.bookapp.book.data.mappers
 
+import com.cmp.bookapp.book.data.database.BookEntity
 import com.cmp.bookapp.book.data.dto.SearchedBooksDto
 import com.cmp.bookapp.book.domain.model.Book
 
@@ -23,7 +24,6 @@ fun SearchedBooksDto.toBook(): Book {
     )
 }
 
-/*
 fun Book.toBookEntity(): BookEntity {
     return BookEntity(
         id = id,
@@ -36,7 +36,7 @@ fun Book.toBookEntity(): BookEntity {
         ratingsAverage = averageRating,
         ratingsCount = ratingCount,
         numPagesMedian = numPages,
-        numEdition = numEdition
+        numEditions = numEdition,
     )
 }
 
@@ -52,6 +52,6 @@ fun BookEntity.toBook(): Book {
         averageRating = ratingsAverage,
         ratingCount = ratingsCount,
         numPages = numPagesMedian,
-        numEdition = numEdition
+        numEdition = numEditions
     )
-}*/
+}

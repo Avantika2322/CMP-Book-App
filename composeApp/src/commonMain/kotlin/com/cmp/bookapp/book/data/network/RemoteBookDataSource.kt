@@ -1,5 +1,6 @@
 package com.cmp.bookapp.book.data.network
 
+import com.cmp.bookapp.book.data.dto.BookWorkDto
 import com.cmp.bookapp.book.data.dto.SearchResDto
 import com.cmp.bookapp.core.domain.DataError
 import com.cmp.bookapp.core.domain.Result
@@ -9,4 +10,6 @@ interface RemoteBookDataSource {
         query: String,
         resultLimit: Int?
     ): Result<SearchResDto, DataError.Remote>
+
+    suspend fun getBookDetails(id: String): Result<BookWorkDto, DataError.Remote>
 }

@@ -54,13 +54,14 @@ fun BookListItem(
     modifier: Modifier = Modifier
 ) {
     Surface(
-        shape = RoundedCornerShape(25.dp),
-        modifier = modifier.clickable(onClick = onClick),
+        shape = RoundedCornerShape(32.dp),
+        modifier = modifier
+            .clickable(onClick = onClick),
         color = LightBlue.copy(alpha = 0.2f)
     ) {
         Row(
             modifier = Modifier
-                .padding(horizontal = 15.dp, vertical = 12.dp)
+                .padding(16.dp)
                 .fillMaxWidth()
                 .height(IntrinsicSize.Min),
             verticalAlignment = Alignment.CenterVertically,
@@ -130,9 +131,10 @@ fun BookListItem(
                     }
                 }
             }
-
             Column(
-                modifier = Modifier.fillMaxHeight().weight(1f),
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .weight(1f),
                 verticalArrangement = Arrangement.Center
             ) {
                 Text(
@@ -141,23 +143,21 @@ fun BookListItem(
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis
                 )
-
-                book.authors.firstOrNull()?.let { name ->
+                book.authors.firstOrNull()?.let { authorName ->
                     Text(
-                        text = name,
+                        text = authorName,
                         style = MaterialTheme.typography.bodyLarge,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )
                 }
-
                 book.averageRating?.let { rating ->
                     Row(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
                             text = "${round(rating * 10) / 10.0}",
-                            style = MaterialTheme.typography.bodyMedium,
+                            style = MaterialTheme.typography.bodyMedium
                         )
                         Icon(
                             imageVector = Icons.Default.Star,
@@ -167,11 +167,11 @@ fun BookListItem(
                     }
                 }
             }
-
             Icon(
                 imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
                 contentDescription = null,
-                modifier = Modifier.size(35.dp)
+                modifier = Modifier
+                    .size(36.dp)
             )
         }
     }

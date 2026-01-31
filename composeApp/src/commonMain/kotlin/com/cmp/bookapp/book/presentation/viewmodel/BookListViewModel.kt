@@ -34,14 +34,16 @@ class BookListViewModel(
             if (cachedBookList.isEmpty()) {
                 observeSearchQuery()
             }
+            observeFavoriteBooks()
         }
         .stateIn(
             viewModelScope,
-            SharingStarted.Companion.WhileSubscribed(5000L),
+            SharingStarted.WhileSubscribed(5000L),
             _state.value
         )
     private val cachedBookList: List<Book> = emptyList()
     private var searchJob: Job? = null
+    private var observeFavoriteJob: Job? = null
 
     fun onAction(action: BookListAction) {
         when (action) {
@@ -67,6 +69,18 @@ class BookListViewModel(
         }
     }
 
+    private fun observeFavoriteBooks() {
+        observeFavoriteJob?.cancel()
+        observeFavoriteJob = bookRepository
+            .getFavoriteBooks()
+            .onEach { favoriteBooks ->
+                _state.update { it.copy(
+                    favoriteBooks = favoriteBooks
+                ) }
+            }
+            .launchIn(viewModelScope)
+    }
+
     private fun observeSearchQuery() {
         state.map { it.searchQuery }
             .distinctUntilChanged()
@@ -77,7 +91,7 @@ class BookListViewModel(
                         _state.update {
                             it.copy(
                                 isLoading = false,
-                                errorMsg = null,
+                                errorMessage = null,
                                 searchResults = cachedBookList
                             )
                         }
@@ -101,7 +115,7 @@ class BookListViewModel(
                 _state.update {
                     it.copy(
                         isLoading = false,
-                        errorMsg = null,
+                        errorMessage = null,
                         searchResults = searchResults
                     )
                 }
@@ -111,7 +125,7 @@ class BookListViewModel(
                     it.copy(
                         searchResults = emptyList(),
                         isLoading = false,
-                        errorMsg = error.toUiText()
+                        errorMessage = error.toUiText()
                     )
                 }
 

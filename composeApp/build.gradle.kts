@@ -132,6 +132,7 @@ dependencies {
     debugImplementation(compose.uiTooling)
 
     // KSP for each target (must match targets declared in kotlin { })
+    add("kspCommonMainMetadata", libs.androidx.room.compiler)
     add("kspAndroid", libs.androidx.room.compiler)
     add("kspIosX64", libs.androidx.room.compiler)
     add("kspIosArm64", libs.androidx.room.compiler)
@@ -139,7 +140,7 @@ dependencies {
 }
 
 // REQUIRED for new KSP
-ksp {
-    arg("room.schemaLocation", "$projectDir/schemas")
-    arg("use.ksp", "true")
-}
+//ksp {
+//    arg("room.schemaLocation", "$projectDir/schemas")
+//    arg("use.ksp", "true")
+//}

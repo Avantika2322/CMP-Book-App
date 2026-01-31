@@ -24,7 +24,9 @@ import com.cmp.bookapp.book.presentation.viewmodel.BookListViewModel
 import com.cmp.bookapp.book.presentation.ui.bookList.BookListScreenRoot
 import com.cmp.bookapp.book.presentation.viewmodel.BookDetailViewModel
 import com.cmp.bookapp.book.presentation.viewmodel.SelectedBookViewModel
+import io.ktor.http.parametersOf
 import org.koin.compose.viewmodel.koinViewModel
+import org.koin.core.parameter.parametersOf
 
 @Composable
 @Preview
@@ -68,20 +70,46 @@ fun App() {
                     val selectedBookViewModel =
                         it.sharedKoinViewModel<SelectedBookViewModel>(navController)
                     val selectedBook by selectedBookViewModel.selectedBook.collectAsStateWithLifecycle()
-                    val bookDetailViewModel = koinViewModel<BookDetailViewModel>()
+                    val bookId = selectedBook?.id
 
-                    LaunchedEffect(selectedBook){
-                        selectedBook?.let {
-                            bookDetailViewModel.onAction(BookDetailAction.OnSelectedBookChange(it))
+                    bookId?.let { id ->
+
+                        val bookDetailViewModel: BookDetailViewModel = koinViewModel(
+                            key = id,
+                            parameters = { parametersOf(id) }
+                        )
+
+                        LaunchedEffect(selectedBook) {
+                            selectedBook?.let { book->
+                                bookDetailViewModel.onAction(
+                                    BookDetailAction.OnSelectedBookChange(
+                                        book
+                                    )
+                                )
+                            }
                         }
+
+                        BookDetailScreenRoot(
+                            viewModel = bookDetailViewModel,
+                            onBackClick = { navController.navigateUp() }
+                        )
                     }
-
-                    BookDetailScreenRoot(
-                        viewModel = bookDetailViewModel,
-                        onBackClick = {
-                            navController.navigateUp()
-                        }
-                    )
+//                    val bookDetailViewModel =  koinViewModel(
+//                        parameters = { parametersOf(selectedBook?.id) }
+//                    )
+//
+//                    LaunchedEffect(selectedBook){
+//                        selectedBook?.let {
+//                            bookDetailViewModel.onAction(BookDetailAction.OnSelectedBookChange(it))
+//                        }
+//                    }
+//
+//                    BookDetailScreenRoot(
+//                        viewModel = bookDetailViewModel,
+//                        onBackClick = {
+//                            navController.navigateUp()
+//                        }
+//                    )
                 }
             }
         }
