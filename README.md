@@ -1,35 +1,89 @@
-This is a Kotlin Multiplatform project targeting Android, iOS.
+📚 Book Library App (Kotlin Multiplatform)
 
-* [/composeApp](./composeApp/src) is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - [commonMain](./composeApp/src/commonMain/kotlin) is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    the [iosMain](./composeApp/src/iosMain/kotlin) folder would be the right place for such calls.
-    Similarly, if you want to edit the Desktop (JVM) specific part, the [jvmMain](./composeApp/src/jvmMain/kotlin)
-    folder is the appropriate location.
+This is a Kotlin Multiplatform (KMP) project targeting Android and iOS, built using Compose Multiplatform (CMP) for shared UI.
 
-* [/iosApp](./iosApp/iosApp) contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform,
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+The app allows users to explore books, view details, search for books, and manage favorites seamlessly across platforms.
 
-### Build and Run Android Application
+🚀 Features
+📖 Book Listing – View a list of available books
+🔍 Search Books – Search books by title or keyword
+📘 Book Details – View detailed information about each book
+❤️ Favorites – Add/remove books from favorites
+🔄 Cross-platform UI using Compose Multiplatform
+🧱 Tech Stack
+Kotlin Multiplatform (KMP)
+Compose Multiplatform (CMP) – Shared UI
+Ktor – Network layer
+Koin – Dependency Injection
+Room – Local database (for caching & favorites)
+Coil – Image loading
+Architecture:
+MVVM / MVI hybrid
+Clean Architecture (Domain, Data, Presentation layers)
+📂 Project Structure
+/composeApp
 
-To build and run the development version of the Android app, use the run configuration from the run widget
-in your IDE’s toolbar or build it directly from the terminal:
-- on macOS/Linux
-  ```shell
-  ./gradlew :composeApp:assembleDebug
-  ```
-- on Windows
-  ```shell
-  .\gradlew.bat :composeApp:assembleDebug
-  ```
+Contains shared code for all platforms.
 
-### Build and Run iOS Application
+commonMain
+→ Shared business logic, UI, and core functionality
+androidMain
+→ Android-specific implementations
+iosMain
+→ iOS-specific implementations (e.g., platform APIs like CoreCrypto if needed)
+jvmMain (if used)
+→ Desktop-specific code
+/iosApp
+Entry point for the iOS application
+Can include SwiftUI code if needed
+Responsible for launching the shared Compose UI
+🏗️ Architecture Overview
 
-To build and run the development version of the iOS app, use the run configuration from the run widget
-in your IDE’s toolbar or open the [/iosApp](./iosApp) directory in Xcode and run it from there.
+The project follows Clean Architecture principles:
 
----
+Presentation Layer
+Compose UI
+ViewModels (MVVM/MVI)
+Domain Layer
+Use cases
+Business logic
+Data Layer
+Repository pattern
+Remote (Ktor API)
+Local (Room DB)
+▶️ How to Run
+🟢 Android
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+Run using IDE or terminal:
+
+macOS/Linux
+
+./gradlew :composeApp:assembleDebug
+
+Windows
+
+.\gradlew.bat :composeApp:assembleDebug
+🍎 iOS
+Open /iosApp in Xcode
+Select a simulator/device
+Click Run
+🔧 Key Functional Modules
+Book Module
+Fetch book list from API
+Display in UI
+Search Module
+Real-time or query-based search
+API integration using Ktor
+Favorites Module
+Save/remove favorites locally using Room
+Persist user selections
+📌 Future Improvements (Optional)
+Pagination for large book lists
+Offline-first support
+Dark mode support
+Unit & UI testing
+Push notifications
+📖 Learn More
+Kotlin Multiplatform documentation
+Compose Multiplatform guides
+Ktor & Koin official docs
