@@ -1,35 +1,138 @@
-This is a Kotlin Multiplatform project targeting Android, iOS.
+# 📚 Book Library App (Kotlin Multiplatform)
 
-* [/composeApp](./composeApp/src) is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - [commonMain](./composeApp/src/commonMain/kotlin) is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    the [iosMain](./composeApp/src/iosMain/kotlin) folder would be the right place for such calls.
-    Similarly, if you want to edit the Desktop (JVM) specific part, the [jvmMain](./composeApp/src/jvmMain/kotlin)
-    folder is the appropriate location.
+This is a **Kotlin Multiplatform (KMP)** project targeting **Android** and **iOS**, built using **Compose Multiplatform (CMP)** for shared UI.
 
-* [/iosApp](./iosApp/iosApp) contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform,
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
-
-### Build and Run Android Application
-
-To build and run the development version of the Android app, use the run configuration from the run widget
-in your IDE’s toolbar or build it directly from the terminal:
-- on macOS/Linux
-  ```shell
-  ./gradlew :composeApp:assembleDebug
-  ```
-- on Windows
-  ```shell
-  .\gradlew.bat :composeApp:assembleDebug
-  ```
-
-### Build and Run iOS Application
-
-To build and run the development version of the iOS app, use the run configuration from the run widget
-in your IDE’s toolbar or open the [/iosApp](./iosApp) directory in Xcode and run it from there.
+The app allows users to explore books, view details, search for books, and manage favorites seamlessly across platforms.
 
 ---
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+## 🚀 Features
+
+- 📖 Book Listing – View a list of available books  
+- 🔍 Search Books – Search books by title or keyword  
+- 📘 Book Details – View detailed information about each book  
+- ❤️ Favorites – Add/remove books from favorites  
+- 🔄 Cross-platform UI using Compose Multiplatform  
+
+---
+
+## 🧱 Tech Stack
+
+- Kotlin Multiplatform (KMP)  
+- Compose Multiplatform (CMP) – Shared UI  
+- Ktor – Network layer  
+- Koin – Dependency Injection  
+- Room – Local database (for caching & favorites)  
+- Coil – Image loading  
+
+### Architecture
+- MVVM / MVI  
+- Clean Architecture (Domain, Data, Presentation)
+
+---
+
+## 📂 Project Structure
+
+### /composeApp
+
+Contains shared code for all platforms.
+
+- commonMain  
+  Shared business logic, UI, and core functionality  
+
+- androidMain  
+  Android-specific implementations  
+
+- iosMain  
+  iOS-specific implementations  
+
+- jvmMain (optional)  
+  Desktop-specific code  
+
+---
+
+### /iosApp
+
+- Entry point for the iOS application  
+- Can include SwiftUI code  
+- Launches shared Compose UI  
+
+---
+
+## 🏗️ Architecture Overview
+
+This project follows **Clean Architecture**:
+
+### Presentation Layer
+- Compose UI  
+- ViewModels (MVVM/MVI)
+
+### Domain Layer
+- Use cases  
+- Business logic  
+
+### Data Layer
+- Repository pattern  
+- Remote (Ktor API)  
+- Local (Room DB)  
+
+---
+
+## ▶️ How to Run
+
+### Android
+
+Run using IDE or terminal:
+
+#### macOS/Linux
+```bash
+./gradlew :composeApp:assembleDebug
+```
+
+#### Windows
+```bash
+.\gradlew.bat :composeApp:assembleDebug
+```
+
+---
+
+### iOS
+
+- Open `/iosApp` in Xcode  
+- Select a simulator or device  
+- Click Run  
+
+---
+
+## 🔧 Key Modules
+
+### Book Module
+- Fetch book list from API  
+- Display in UI  
+
+### Search Module
+- Search books using API  
+- Built with Ktor  
+
+### Favorites Module
+- Save/remove favorites locally  
+- Uses Room database  
+
+---
+
+## 📌 Future Improvements
+
+- Pagination support  
+- Offline-first capability  
+- Dark mode  
+- Unit & UI testing  
+- Push notifications  
+
+---
+
+## 📖 Learn More
+
+- Kotlin Multiplatform  
+- Compose Multiplatform  
+- Ktor  
+- Koin  
